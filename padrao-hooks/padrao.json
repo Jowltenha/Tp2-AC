@@ -1,0 +1,32 @@
+{
+  "_comentario": "Única fonte que cada squad edita. O instalar.py gera .claude/settings.json e .claude/hooks/politica.json a partir daqui. Valores abaixo = serviço de agendamento (TP2).",
+  "pasta_app": "agendamento",
+  "pastas_editaveis": ["agendamento", "tests"],
+  "comandos_permitidos": [
+    ".venv/bin/pytest *",
+    ".venv/bin/ruff *",
+    "git status *",
+    "git diff *",
+    "git log *"
+  ],
+  "leitura_livre": ["**/*.sql"],
+  "confirmar_escrita": ["/db/migrations/**", "**/migration_*"],
+  "negar": [
+    "Read(./.env)",
+    "Read(./.env.*)",
+    "Bash(git push *)",
+    "Bash(rm -rf *)"
+  ],
+  "modo_padrao": "acceptEdits",
+  "diretorios_bloqueados_escrita": ["../infra", "../dados-teste"],
+  "diretorios_confirmacao": [".claude"],
+  "liberados_fora_do_projeto": ["~/.claude/plans"],
+  "prefixo_teste": "test_",
+  "padroes_teste": ["test_*.py", "*_test.py"],
+  "extensao": "py",
+  "formatador": ["ruff", "format"],
+  "linter": ["ruff", "check"],
+  "ferramentas_auditadas": ["Write", "Edit", "NotebookEdit", "Bash"],
+  "log_auditoria": "logs/auditoria.jsonl",
+  "log_qualidade": "logs/qualidade.log"
+}

@@ -1,0 +1,27 @@
+{
+  "_comentario": "Gerado por padrao-hooks/instalar.py a partir de padrao.json. Não edite à mão.",
+  "diretorios_bloqueados_escrita": [
+    "../infra",
+    "../dados-teste"
+  ],
+  "diretorios_confirmacao": [
+    ".claude"
+  ],
+  "liberados_fora_do_projeto": [
+    "~/.claude/plans"
+  ],
+  "padroes_teste": [
+    "test_*.py",
+    "*_test.py"
+  ],
+  "formatador": [
+    "ruff",
+    "format"
+  ],
+  "linter": [
+    "ruff",
+    "check"
+  ],
+  "log_auditoria": "logs/auditoria.jsonl",
+  "log_qualidade": "logs/qualidade.log"
+}

@@ -1,0 +1,4 @@
+id;nome;cpf;data_nascimento;telefone;convenio
+1;Ana Sintética Rocha;000.111.222-33;1984-03-12;(21) 90000-0001;Plano Ouro
+2;Bruno Fictício Lima;111.222.333-44;1990-07-25;(21) 90000-0002;Particular
+3;Carla Exemplo Souza;222.333.444-55;1975-11-02;(21) 90000-0003;Plano Prata

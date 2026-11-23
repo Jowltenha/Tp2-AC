@@ -1,0 +1,130 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "defaultMode": "acceptEdits",
+    "disableBypassPermissionsMode": "disable",
+    "blockReadsOutsideWorkingDirectories": true,
+    "allow": [
+      "Edit(/agendamento/**)",
+      "Edit(/tests/**)",
+      "Read(**/*.sql)",
+      "Bash(.venv/bin/pytest *)",
+      "Bash(.venv/bin/ruff *)",
+      "Bash(git status *)",
+      "Bash(git diff *)",
+      "Bash(git log *)"
+    ],
+    "ask": [
+      "Edit(/db/migrations/**)",
+      "Edit(**/migration_*)"
+    ],
+    "deny": [
+      "Read(./.env)",
+      "Read(./.env.*)",
+      "Bash(git push *)",
+      "Bash(rm -rf *)"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Write|Edit|NotebookEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$CLAUDE_PROJECT_DIR/.claude/hooks/guarda_escrita.py\"",
+            "timeout": 15,
+            "statusMessage": "Checando política de escrita da squad"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "if": "Edit(/agendamento/**/[a-su-z0-9_]*.py)",
+            "command": "python3 \"$CLAUDE_PROJECT_DIR/.claude/hooks/formatar_lint.py\"",
+            "timeout": 60,
+            "statusMessage": "ruff format + ruff check"
+          },
+          {
+            "type": "command",
+            "if": "Edit(/agendamento/**/t[a-df-z0-9_]*.py)",
+            "command": "python3 \"$CLAUDE_PROJECT_DIR/.claude/hooks/formatar_lint.py\"",
+            "timeout": 60,
+            "statusMessage": "ruff format + ruff check"
+          },
+          {
+            "type": "command",
+            "if": "Edit(/agendamento/**/te[a-rt-z0-9_]*.py)",
+            "command": "python3 \"$CLAUDE_PROJECT_DIR/.claude/hooks/formatar_lint.py\"",
+            "timeout": 60,
+            "statusMessage": "ruff format + ruff check"
+          },
+          {
+            "type": "command",
+            "if": "Edit(/agendamento/**/tes[a-su-z0-9_]*.py)",
+            "command": "python3 \"$CLAUDE_PROJECT_DIR/.claude/hooks/formatar_lint.py\"",
+            "timeout": 60,
+            "statusMessage": "ruff format + ruff check"
+          },
+          {
+            "type": "command",
+            "if": "Edit(/agendamento/**/test[a-z0-9]*.py)",
+            "command": "python3 \"$CLAUDE_PROJECT_DIR/.claude/hooks/formatar_lint.py\"",
+            "timeout": 60,
+            "statusMessage": "ruff format + ruff check"
+          },
+          {
+            "type": "command",
+            "if": "Write(/agendamento/**/[a-su-z0-9_]*.py)",
+            "command": "python3 \"$CLAUDE_PROJECT_DIR/.claude/hooks/formatar_lint.py\"",
+            "timeout": 60,
+            "statusMessage": "ruff format + ruff check"
+          },
+          {
+            "type": "command",
+            "if": "Write(/agendamento/**/t[a-df-z0-9_]*.py)",
+            "command": "python3 \"$CLAUDE_PROJECT_DIR/.claude/hooks/formatar_lint.py\"",
+            "timeout": 60,
+            "statusMessage": "ruff format + ruff check"
+          },
+          {
+            "type": "command",
+            "if": "Write(/agendamento/**/te[a-rt-z0-9_]*.py)",
+            "command": "python3 \"$CLAUDE_PROJECT_DIR/.claude/hooks/formatar_lint.py\"",
+            "timeout": 60,
+            "statusMessage": "ruff format + ruff check"
+          },
+          {
+            "type": "command",
+            "if": "Write(/agendamento/**/tes[a-su-z0-9_]*.py)",
+            "command": "python3 \"$CLAUDE_PROJECT_DIR/.claude/hooks/formatar_lint.py\"",
+            "timeout": 60,
+            "statusMessage": "ruff format + ruff check"
+          },
+          {
+            "type": "command",
+            "if": "Write(/agendamento/**/test[a-z0-9]*.py)",
+            "command": "python3 \"$CLAUDE_PROJECT_DIR/.claude/hooks/formatar_lint.py\"",
+            "timeout": 60,
+            "statusMessage": "ruff format + ruff check"
+          }
+        ]
+      },
+      {
+        "matcher": "Write|Edit|NotebookEdit|Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$CLAUDE_PROJECT_DIR/.claude/hooks/auditar.py\"",
+            "timeout": 15
+          }
+        ]
+      }
+    ]
+  }
+}

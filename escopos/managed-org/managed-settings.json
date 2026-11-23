@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "_destino": "/etc/claude-code/managed-settings.json em TODAS as máquinas da empresa (via MDM/imagem). Nenhum escopo abaixo sobrescreve.",
+  "permissions": {
+    "disableBypassPermissionsMode": "disable",
+    "deny": [
+      "Read(//**/.env)",
+      "Read(//**/.env.*)",
+      "Read(~/.aws/**)",
+      "Read(~/.ssh/**)",
+      "Bash(git push --force *)",
+      "Bash(terraform apply *)",
+      "Bash(terraform destroy *)"
+    ]
+  },
+  "allowManagedHooksOnly": false
+}

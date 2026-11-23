@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "_destino": "servico-agendamento/.claude/settings.local.json — arquivo do desenvolvedor, fora do git (.gitignore). Valores abaixo são fictícios.",
+  "env": {
+    "AGENDAMENTO_DB_URL": "postgresql://joao:<senha-pessoal>@localhost:5432/agendamento_dev",
+    "PGPASSWORD": "<senha-pessoal>"
+  },
+  "permissions": {
+    "allow": [
+      "Bash(docker compose up -d db)",
+      "Bash(psql -h localhost -d agendamento_dev *)"
+    ]
+  }
+}
